@@ -137,7 +137,7 @@ export default function htmlToElement(rawHtml, customOpts = {}, done) {
               {opts.bullet}
             </TextComponent>);
           }
-          if (opts.addLineBreaks && index < list.length - 1) {
+          if (opts.addLineBreaksAfterListItem && index < list.length - 1) {
             linebreakAfter = opts.lineBreak;
           }
         }

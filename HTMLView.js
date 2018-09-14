@@ -80,6 +80,7 @@ class HtmlView extends PureComponent {
 
     const opts = {
       addLineBreaks,
+      addLineBreaksAfterListItem,
       linkHandler: onLinkPress,
       linkLongPressHandler: onLinkLongPress,
       styles: {...baseStyles, ...stylesheet, ...style},
@@ -131,6 +132,7 @@ class HtmlView extends PureComponent {
 
 HtmlView.propTypes = {
   addLineBreaks: PropTypes.bool,
+  addLineBreaksAfterListItem: PropTypes.bool,
   bullet: PropTypes.string,
   lineBreak: PropTypes.string,
   NodeComponent: PropTypes.func,
@@ -151,6 +153,7 @@ HtmlView.propTypes = {
 
 HtmlView.defaultProps = {
   addLineBreaks: true,
+  addLineBreaksAfterListItem: true,
   onLinkPress: url => Linking.openURL(url),
   onLinkLongPress: null,
   onError: console.error.bind(console),
