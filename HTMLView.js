@@ -67,6 +67,7 @@ class HtmlView extends PureComponent {
   startHtmlRender(value, style, textComponentProps) {
     const {
       addLineBreaks,
+      addLineBreaksAfterListItem,
       onLinkPress,
       onLinkLongPress,
       stylesheet,
