@@ -112,7 +112,6 @@ export default function htmlToElement(rawHtml, customOpts = {}, done) {
               linebreakAfter = opts.paragraphBreak;
             }
             break;
-          case 'br':
           case 'h1':
           case 'h2':
           case 'h3':
@@ -121,6 +120,9 @@ export default function htmlToElement(rawHtml, customOpts = {}, done) {
             linebreakAfter = opts.lineBreak;
             break;
           }
+        }
+        if (node.name === 'br') {
+          linebreakAfter = opts.lineBreak;
         }
 
         let listItemPrefix = null;
