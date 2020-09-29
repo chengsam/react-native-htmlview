@@ -9,6 +9,7 @@ const defaultOpts = {
   lineBreak: '\n',
   paragraphBreak: '\n\n',
   bullet: '\u2022 ',
+  bullet2: '\u25e6 ',
   TextComponent: Text,
   textComponentProps: null,
   NodeComponent: Text,
@@ -132,13 +133,25 @@ export default function htmlToElement(rawHtml, customOpts = {}, done) {
           const customStyle = inheritedStyle(parent);
 
           if (parent.name === 'ol') {
+            if (parent.parent) {
+              listItemPrefix = (<TextComponent style={[defaultStyle, customStyle]}>
+                {`        ${orderedListCounter++}. `}
+              </TextComponent>);
+            } else {
             listItemPrefix = (<TextComponent style={[defaultStyle, customStyle]}>
-              {`${orderedListCounter++}. `}
+              {`    ${orderedListCounter++}. `}
             </TextComponent>);
+            }
           } else if (parent.name === 'ul') {
-            listItemPrefix = (<TextComponent style={[defaultStyle, customStyle]}>
-              {opts.bullet}
+            if (parent.parent) {
+              listItemPrefix = (<TextComponent style={[defaultStyle, customStyle]}>
+              {`        ${opts.bullet2}`}
             </TextComponent>);
+            } else {
+            listItemPrefix = (<TextComponent style={[defaultStyle, customStyle]}>
+              {`    ${opts.bullet}`}
+            </TextComponent>);
+            }
           }
           if (opts.addLineBreaksAfterListItem && index < list.length - 1) {
             linebreakAfter = opts.lineBreak;
