@@ -42,6 +42,8 @@ export default function htmlToElement(rawHtml, customOpts = {}, done) {
     ...customOpts,
   };
 
+  let orderedListCounter = 1;
+
   function inheritedStyle(parent) {
     if (!parent) return null;
     const style = StyleSheet.flatten(opts.styles[parent.name]) || {};
@@ -53,7 +55,6 @@ export default function htmlToElement(rawHtml, customOpts = {}, done) {
     if (!dom) return null;
 
     const renderNode = opts.customRenderer;
-    let orderedListCounter = 1;
 
     return dom.map((node, index, list) => {
       if (renderNode) {
